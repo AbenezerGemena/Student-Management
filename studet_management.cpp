@@ -123,3 +123,39 @@ void displayStudentInfo(const Student& student) {
     float studentGPA = calculateGPA(student.grades);
     cout << "GPA: " << studentGPA << endl;
 }
+
+void saveStudentData(const Student students[], int numStudents, const string& filename) {
+    ofstream outFile(filename);
+    if (!outFile) {
+        cerr << "Error: Unable to open file for writing." << endl;
+        return;
+    }
+
+   
+    outFile << left << setw(10) << "ID"
+            << left << setw(20) << "Name"
+            << left << setw(5) << "Age"
+            << left << setw(15) << "Phone Number"
+            << left << setw(5) << "Sex"
+            << left << setw(10) << "GPA";
+    for (int j = 0; j < NUM_SUBJECTS; j++) {
+        string subjects_l[] = {"Applied two", "C++", "Civics", "Technical Drawing", "Writing Skill", "Emerging Technology"};
+        outFile << left << setw(20) << (  subjects_l[j]);
+    }
+    outFile << endl;
+
+  
+    for (int i = 0; i < numStudents; ++i) {
+        outFile << left << setw(10) << students[i].id
+                << left << setw(20) << students[i].name
+                << left << setw(5) << students[i].age
+                << left << setw(15) << students[i].phoneNumber
+                << left << setw(5) << students[i].sex
+                << left << setw(10) << calculateGPA(students[i].grades);
+        for (int j = 0; j < NUM_SUBJECTS; j++) {
+            outFile << left << setw(10) << students[i].grades[j];
+        }
+        outFile << endl;
+    }
+    outFile.close();
+}
