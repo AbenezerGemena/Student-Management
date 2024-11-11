@@ -77,3 +77,34 @@ void registerStudent(Student& student) {
 
     saveStudentToFile(student);
 }
+
+
+float calculateGPA(const int grades[]) {
+    const int A_score = 90,
+              B_score = 80,
+              C_score = 70,
+              D_score = 60;
+
+    const int A = 4,
+              B = 3,
+              C = 2,
+              D = 1,
+              F = 0;
+
+    int totalPoints = 0;
+    for (int i = 0; i < NUM_SUBJECTS; i++) {
+        if (grades[i] >= A_score && grades[i] <= 100) {
+            totalPoints += A * CREDIT_HOUR;
+        } else if (grades[i] >= B_score) {
+            totalPoints += B * CREDIT_HOUR;
+        } else if (grades[i] >= C_score) {
+            totalPoints += C * CREDIT_HOUR;
+        } else if (grades[i] >= D_score) {
+            totalPoints += D * CREDIT_HOUR;
+        } else {
+            totalPoints += F * CREDIT_HOUR;
+        }
+    }
+
+    return static_cast<float>(totalPoints) / (NUM_SUBJECTS * CREDIT_HOUR);
+}
