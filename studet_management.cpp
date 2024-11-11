@@ -272,4 +272,18 @@ void removeStudentByID(Student students[], int& numStudents, const string& idToR
     if (!found) {
         cout << "Student with ID " << idToRemove << " not found." << endl;
     }
+
+}
+
+void menu() {
+    cout << "************************************** Menu ********************************" << endl;
+    cout << "\t\t\t1. Display Student Information" << endl;
+    cout << "\t\t\t2. Add New Student" << endl;
+    cout << "\t\t\t3. Remove Student by ID" << endl;
+    cout << "\t\t\t5. Report" << endl;
+    cout << "\t\t\t6. Register a Student" << endl;
+    cout << "\t\t\t7. Student Profile" << endl;
+    cout << "\t\t\t0. Exit" << endl;
+    cout << "*****************************************************************************" << endl;
+    cout << "Enter your choice: ";
 }
