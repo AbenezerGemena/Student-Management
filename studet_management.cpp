@@ -159,3 +159,52 @@ void saveStudentData(const Student students[], int numStudents, const string& fi
     }
     outFile.close();
 }
+
+void gradeTestScores(int scores[]) {
+    const int A_score = 90,
+              B_score = 80,
+              C_score = 70,
+              D_score = 60;
+
+    const int A = 4,
+              B = 3,
+              C = 2,
+              D = 1,
+              F = 0;
+
+    int total = 0;
+    for (int i = 0; i < NUM_SUBJECTS; i++) {
+        string subjects_list[] = {"Applied two", "C++", "Civics", "Technical Drawing", "Writing Skill", "Emerging Technology"};
+        cout << "Enter result of: " << subjects_list[i] << ": ";
+        int result;
+        cin >> result;
+        if (result >= A_score && result <= 100) {
+            cout << "Your grade is A." << endl;
+            cout << "Your point is: " << A << endl;
+            total += A * CREDIT_HOUR;
+        } else if (result >= B_score) {
+            cout << "Your grade is B." << endl;
+            cout << "Your point is: " << B << endl;
+            total += B * CREDIT_HOUR;
+        } else if (result >= C_score) {
+            cout << "Your grade is C." << endl;
+            cout << "Your point is: " << C << endl;
+            total += C * CREDIT_HOUR;
+        } else if (result >= D_score) {
+            cout << "Your grade is D." << endl;
+            cout << "Your point is: " << D << endl;
+            total += D * CREDIT_HOUR;
+        } else {
+            cout << "Your grade is F." << endl;
+            cout << "Your point is: " << F << endl;
+        }
+        scores[i] = result;
+    }
+    float GPA = static_cast<float>(total) / (NUM_SUBJECTS * CREDIT_HOUR);
+    cout << "Total points: " << total << endl;
+    cout << "GPA: " << GPA << endl;
+    if (GPA >= 1.8)
+        cout << "Congratulations, you passed to the next semester." << endl;
+    else
+        cout << "Sorry, you failed." << endl;
+}
