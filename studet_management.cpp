@@ -108,3 +108,18 @@ float calculateGPA(const int grades[]) {
 
     return static_cast<float>(totalPoints) / (NUM_SUBJECTS * CREDIT_HOUR);
 }
+
+void displayStudentInfo(const Student& student) {
+    cout << "ID: " << student.id << endl;
+    cout << "Name: " << student.name << endl;
+    cout << "Age: " << student.age << endl;
+    cout << "Phone Number: " << student.phoneNumber << endl;
+    cout << "Sex: " << student.sex << endl;
+    cout << "Grades: ";
+    for (int i = 0; i < NUM_SUBJECTS; i++) {
+        cout << student.grades[i] << " ";
+    }
+    cout << endl;
+    float studentGPA = calculateGPA(student.grades);
+    cout << "GPA: " << studentGPA << endl;
+}
