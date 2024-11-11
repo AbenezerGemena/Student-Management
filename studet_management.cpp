@@ -208,3 +208,27 @@ void gradeTestScores(int scores[]) {
     else
         cout << "Sorry, you failed." << endl;
 }
+
+
+void report(const Student students[], int numStudents) {
+    float totalGPA = 0;
+    int passedCount = 0;
+    int failedCount = 0;
+
+    cout << "-------- Report --------" << endl;
+    cout << "Number of Students: " << numStudents << endl;
+
+    for (int i = 0; i < numStudents; ++i) {
+        float studentGPA = calculateGPA(students[i].grades);
+        totalGPA += studentGPA;
+        if (studentGPA >= 1.8) {
+            passedCount++;
+        } else {
+            failedCount++;
+        }
+    }
+
+    cout << "Average GPA: " << (totalGPA / numStudents) << endl;
+    cout << "Students Passed: " << passedCount << endl;
+    cout << "Students Failed: " << failedCount << endl;
+}
