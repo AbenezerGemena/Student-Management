@@ -287,3 +287,90 @@ void menu() {
     cout << "*****************************************************************************" << endl;
     cout << "Enter your choice: ";
 }
+
+
+int main() {
+    Student students[MAX_STUDENTS];
+    int numStudents = 0;
+
+    int choice;
+    do {
+        menu();
+        cin >> choice;
+        switch (choice) {
+            case 1: {
+                string searchQuery;
+                cout << "Enter student ID or Name to display information: ";
+                cin >> searchQuery;
+                bool found = false;
+                for (int i = 0; i < numStudents; ++i) {
+                    if (students[i].id == searchQuery || students[i].name == searchQuery) {
+                        displayStudentInfo(students[i]);
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    cout << "Student with ID or Name " << searchQuery << " not found." << endl;
+                }
+                break;
+            }
+            case 2: {
+                 addStudent(students, numStudents);
+               
+                break;
+            }
+            case 3: {
+                string idToRemove;
+                cout << "Enter the ID of the student to remove: ";
+                cin >> idToRemove;
+                removeStudentByID(students, numStudents, idToRemove);
+                break;
+            }
+            case 4: {
+                // Implement createBackup if needed
+                // createBackup(students, numStudents);
+                cout << "Function not implemented yet." << endl;
+                break;
+            }
+            case 5: {
+                report(students, numStudents);
+                break;
+            }
+            case 6: {
+                Student newStudent;
+                registerStudent(newStudent);
+                students[numStudents] = newStudent;
+                numStudents++;
+                break;
+            }
+            case 7: {
+                string searchQuery;
+                cout << "Enter student ID or Name to display profile: ";
+                cin >> searchQuery;
+                bool found = false;
+                for (int i = 0; i < numStudents; ++i) {
+                    if (students[i].id == searchQuery || students[i].name == searchQuery) {
+                        studentProfile(students[i]);
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    cout << "Student with ID or Name " << searchQuery << " not found." << endl;
+                }
+                break;
+            }
+            case 0: {
+                cout << "Exiting program." << endl;
+                break;
+            }
+            default: {
+                cout << "Invalid choice." << endl;
+                break;
+            }
+        }
+    } while (choice != 0);
+
+    return 0;
+}
