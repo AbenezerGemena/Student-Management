@@ -232,3 +232,25 @@ void report(const Student students[], int numStudents) {
     cout << "Students Passed: " << passedCount << endl;
     cout << "Students Failed: " << failedCount << endl;
 }
+
+void addStudent(Student students[], int& numStudents) {
+    if (numStudents < MAX_STUDENTS) {
+        cout << "Enter student ID: ";
+        cin >> students[numStudents].id;
+        cout << "Enter student name: ";
+        cin.ignore();
+        getline(cin, students[numStudents].name);
+        cout << "Enter student age: ";
+        cin >> students[numStudents].age;
+        cout << "Enter student phone number: ";
+        cin >> students[numStudents].phoneNumber;
+        cout << "Enter student sex (M/F): ";
+        cin >> students[numStudents].sex;
+        cout << "Enter grades for each subject:" << endl;
+        gradeTestScores(students[numStudents].grades);
+        numStudents++;
+        saveStudentData(students, numStudents, "student_data.txt");
+    } else {
+        cout << "Maximum number of students reached." << endl;
+    }
+}
