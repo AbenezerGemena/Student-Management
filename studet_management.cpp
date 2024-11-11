@@ -254,3 +254,22 @@ void addStudent(Student students[], int& numStudents) {
         cout << "Maximum number of students reached." << endl;
     }
 }
+
+
+void removeStudentByID(Student students[], int& numStudents, const string& idToRemove) {
+    bool found = false;
+    for (int i = 0; i < numStudents; ++i) {
+        if (students[i].id == idToRemove) {
+            for (int j = i; j < numStudents - 1; ++j) {
+                students[j] = students[j + 1];
+            }
+            numStudents--;
+            cout << "Student with ID " << idToRemove << " removed successfully." << endl;
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        cout << "Student with ID " << idToRemove << " not found." << endl;
+    }
+}
